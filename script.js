@@ -5,11 +5,13 @@
 // document.querySelector('.number').textContent = 15;
 // document.querySelector('.score').textContent = 11;
 // document.querySelector('.guess').value = 6;
+//
 
 // declare variables
 let secretNumber = Number(1);
 let guess = Number(1);
 let score = Number(20);
+let highScore = Number(0); //
 
 //function declarations
 function getRandomInt(min, max) {
@@ -24,6 +26,7 @@ function isCorrectGuess() {
   if (secretNumber == guess) {
     console.log('Correct!');
     document.body.style.backgroundColor = 'green';
+    checkHighScore();
   } else {
     console.log('Incorrect');
     document.querySelector('.score').textContent--;
@@ -34,6 +37,18 @@ function isCorrectGuess() {
   }
 }
 
+function checkHighScore() {
+  if (score > highScore) {
+    console.log('New High Score');
+    console.log('Score' + score);
+    document.querySelector('.highscore').textContent =
+      document.querySelector('.score').textContent;
+  } else {
+    console.log('Same score');
+  }
+}
+
+// RESET GAME BOARD
 function resetGame() {
   console.log('Reset Game');
   document.body.style.backgroundColor = 'black';
@@ -47,12 +62,14 @@ document.addEventListener('DOMContentLoaded', function () {
   console.log('Document loaded');
   //secretNumber = getRandomInt(1, 20);
   document.querySelector('.guess').value = 0;
-  console.log(secretNumber);
+  //document.querySelector('.highscore').textContent = 12;
+  console.log('Secret Number' + secretNumber);
+  console.log('High Score ' + highScore);
 });
 
 document.querySelector('.check').addEventListener('click', function () {
   guess = Number(document.querySelector('.guess').value);
-  console.log(guess);
+  console.log('My Guess' + guess);
 
   function checkGuess() {
     console.log('Checking Guess...');
